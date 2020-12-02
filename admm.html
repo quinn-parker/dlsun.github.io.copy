@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Note there is no responsive meta tag here -->
+
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Dennis Sun</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/non-responsive.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Dennis Sun</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">home</a></li>
+            <li><a href="research.html">research</a></li>
+            <li><a href="teaching.html">teaching</a></li>
+	    <li><a href="software.html">software</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h3>An ADMM Algorithm for Non-negative matrix factorization</h3>
+
+      <p>This page provides source code for the paper:</p>
+
+      <p style="padding-left:22px; text-indent:-22px">D. L. Sun and C. F&eacute;votte. <a href="papers/nmf_admm.pdf">Alternating direction method of multipliers for
+non-negative matrix factorization with the beta-divergence</a>, <i>IEEE International Conference on Acoustics, Speech, and
+Signal Processing (ICASSP)</i>, May 2014.
+      </p>
+
+      <p><b>Matlab code</b>: <a href="nmf_admm.m">nmf_admm.m</a></p>
+
+      <p><b>Example usage:</b></p>
+
+      <pre><code>V = rand(100, 20);
+
+% initializations
+W0 = rand(100, 5);
+H0 = rand(5, 20);
+
+beta = 1; % set beta=1 for KL divergence, beta=0 for IS divergence
+rho = 1; % ADMM parameter
+
+[W, H] = nmf_admm(V, W0, H0, beta, rho)</code></pre>
+
+    <p>Please feel free to contact me with any questions and bug
+    reports: <b>&#100;&#108;&#115;&#117;&#110;&#064;&#115;&#116;&#097;&#110;&#102;&#111;&#114;&#100;&#046;&#101;&#100;&#117;</b>.</p>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

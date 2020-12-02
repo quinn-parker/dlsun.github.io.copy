@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Note there is no responsive meta tag here -->
+
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Dennis Sun</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/non-responsive.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Dennis Sun</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">home</a></li>
+            <li><a href="research.html">research</a></li>
+            <li><a href="teaching.html">teaching</a></li>
+	    <li><a href="software.html">software</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <h3>Non-Negative Matrix Completion</h3>
+
+      <p>This page provides source code for the paper:</p>
+
+      <p style="padding-left:22px; text-indent:-22px">D. L. Sun and R. Mazumder. <a href="papers/bandwidth_full.pdf">Non-negative matrix completion for bandwidth extension: a convex optimization approach</a>, <i>IEEE Workshop on Machine Learning and 
+Signal Processing (MLSP)</i>, September 2013.
+      </p>
+
+      <p><b>Matlab code</b>: <a href="nmc_admm.m">nmc_admm.m</a></p>
+
+      <p><b>Example usage:</b></p>
+
+      <pre><code>% generate a random matrix to start (just for testing the code)
+V = rand(1000, 1000);
+
+% specify which entries in V are missing
+missing = false(size(V));
+missing(501:1000, 501:1000) = 1; % set quarter of entries to be missing
+
+% specify which entries in V should be held fixed (i.e., not updated in the algorithm)
+fixed = false(size(V));
+fixed(1:1000, 1:500) = 1; % hold first half of matrix fixed
+
+% other parameters of the algorithm
+lam = 1; % regularization parameter in the objective function
+rho = 1; % ADMM parameter
+beta = 1; % set beta=1 for KL divergence, beta=2 for Euclidean distance
+
+% run non-negative matrix completion algorithm
+[X, ~, ~, ~] = nmc_admm(V, missing, fixed, lam, rho, beta);</code></pre>
+
+    <p>Please feel free to contact me with any questions and bug
+    reports: <b>&#100;&#108;&#115;&#117;&#110;&#064;&#115;&#116;&#097;&#110;&#102;&#111;&#114;&#100;&#046;&#101;&#100;&#117;</b>.</p>
+
+
+    <h3>Application to Bandwidth Extension</h3>
+
+    <p>In the paper, we applied non-negative matrix completion to the problem of 
+      bandwidth extension. Shown below are spectrograms of the bandlimited signal, 
+      the full-bandwidth training data, and the recovered signal, alongside the 
+      ground truth. You can listen to the audio by clicking on the link below.</p>
+
+    <h4>AC/DC Example</h4>
+
+    <table class="table">
+      <thead>
+	<th>Bandlimited Signal</th>
+	<th>Training Data</th>
+	<th>Bandwidth Extended</th>
+	<th>Ground Truth</th>
+      </thead>
+      <tbody>
+	<tr>
+	  <td><img src="audio/acdc_test.png" width="200"></td>
+	  <td><img src="audio/acdc_train.png" width="200"></td>
+	  <td><img src="audio/acdc_out.png" width="200"></td>
+	  <td><img src="audio/acdc_truth.png" width="200"></td>
+	</tr>
+	<tr>
+	  <td><a href="audio/acdc_test.wav">Back in Black</a></td>
+	  <td><a href="audio/acdc_train.wav">Highway to Hell</a></td>
+	  <td><a href="audio/acdc_out.wav">Back in Black</a></td>
+	  <td><a href="audio/acdc_truth.wav">Back in Black</a></td>
+	</tr>
+      </tbody>
+    </table>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
